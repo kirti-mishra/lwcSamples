@@ -1,0 +1,25 @@
+<template>
+    <div style="height: 300px;">
+        <!--component to select data-->
+        <template if:true={changeSelection}>
+            <lightning-button variant="brand" label="Show Selected" onclick={getSelected} class="slds-m-left_x-small">
+            </lightning-button>
+            <lightning-datatable key-field="id" data={data} columns={columns} selected-rows={selectedRows}>
+            </lightning-datatable>
+        </template>
+
+        <!--component to dispay data based on first table's selection-->
+        <template if:false={changeSelection}>
+            <lightning-button variant="brand" label="Change Selection" onclick={getMoreRows}
+                class="slds-m-left_x-small">
+            </lightning-button>
+            <template if:false={noRowsSelected}>
+                <lightning-datatable key-field="id" data={dataSelected} columns={columns} hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+            <template if:true={noRowsSelected}>
+                No rows selected!
+            </template>
+        </template>
+    </div>
+</template>
